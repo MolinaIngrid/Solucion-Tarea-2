@@ -1,0 +1,120 @@
+---
+title: "Solución Tarea 2"
+author: "Ingrid Molina Mora"
+date: "10/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### *Punto 3 cargar la función replicar*
+
+```{r} 
+#funcion source para cargar la funcion replicar
+
+source("./scripts/replicar_reg_scal.R")
+
+```
+
+#### *Punto 4 Proporsión de falsos positivos*
+
+
+```{R}
+
+# número de variables 10, proporción de falsos positivos 0.1  
+
+falsos_positivos10 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.05)
+
+# número de variables 20, proporción de falsos positivos 0.45
+
+falsos_positivos20 <- replicar_reg_scal(itr = 20, n = 30, nvars = 20, alfa = 0.05)
+
+# número de variables 50, proporción de falsos positivos 0.4
+
+falsos_positivos50 <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.05)
+
+# número de variables 100, proporción de falsos positivos 0.25 
+
+falsos_positivos100 <- replicar_reg_scal(itr = 20, n = 30, nvars = 100, alfa = 0.05)
+
+```
+
+#### Paso 5 Grafico del número de variables vs. la proporción de falsos positivos
+
+```{r falsos_positivosA, fig.align='center'}
+
+falsos_positivosA<- c(0.1,0.45,0.4,0.25)
+
+nvars<- c(10,20,50,100)
+
+plot(falsos_positivosA, nvars)
+```
+
+#### Paso 6. repetir pasos 4 y 5 variando el alpha
+
+```{R}
+
+# número de variables 100, alpha 0.04  
+
+falsos_positivos.4 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.04)
+
+# número de variables 100, alpha 0.03
+
+falsos_positivos.3 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.03)
+
+# número de variables 100, alpha 0.02
+
+falsos_positivos.2 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.02)
+
+# número de variables 100, alpha 0.01
+
+falsos_positivos.1 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.01)
+
+```
+
+```{r falsos_positivosB, fig.align='center'}
+
+falsos_positivosB<- c(0.05,0,0.05,0.4)
+
+alpha<-c(2,3,4,5)
+
+plot(falsos_positivosB~alpha)
+
+
+```
+
+#### Paso 7 Información de la sesión
+
+```{r}
+
+# R version 3.6.1 (2019-07-05)
+# Platform: x86_64-w64-mingw32/x64 (64-bit)
+# Running under: Windows 10 x64 (build 18362)
+
+# Matrix products: default
+
+# Random number generation:
+##  RNG:     Mersenne-Twister 
+## Normal:  Inversion 
+## Sample:  Rounding 
+ 
+# locale:
+# [1] LC_COLLATE=Spanish_Costa Rica.1252 
+# [2] LC_CTYPE=Spanish_Costa Rica.1252   
+# [3] LC_MONETARY=Spanish_Costa Rica.1252
+# [4] LC_NUMERIC=C                       
+# [5] LC_TIME=Spanish_Costa Rica.1252    
+
+# attached base packages:
+# [1] stats     graphics  grDevices utils     datasets 
+# [6] methods   base     
+
+# loaded via a namespace (and not attached):
+ # [1] MASS_7.3-51.4    compiler_3.6.1   htmltools_0.3.6 
+ # [4] tools_3.6.1      yaml_2.2.0       Rcpp_1.0.1      
+ # [7] rmarkdown_1.14.3 knitr_1.23       xfun_0.8        
+# [10] digest_0.6.20    evaluate_0.14  
+
+``` 
